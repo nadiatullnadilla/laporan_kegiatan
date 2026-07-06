@@ -1,0 +1,26 @@
+flowchart TD
+    Start([Mulai]) --> A[/Halaman Login/]
+    A --> B[Input Username & Password]
+    B --> C{Data Valid?}
+    
+    C -- Tidak --> A
+    
+    C -- Ya --> D[/Dashboard Verifikator/]
+    D --> E{Pilih Menu}
+    
+    E -- Verifikasi Laporan --> F[Lihat Daftar Laporan Baru]
+    F --> G{Keputusan?}
+    
+    G -- Setujui --> H[(Update Status Disetujui)]
+    H --> D
+    
+    G -- Revisi --> I[Isi Catatan Revisi]
+    I --> J[(Update Status Revisi)]
+    J --> D
+    
+    E -- Rekap Laporan --> K[Filter Tanggal]
+    K --> L[Download PDF/Excel]
+    L --> D
+    
+    E -- Logout --> M[Tutup Sesi]
+    M --> End([Selesai])

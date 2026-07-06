@@ -1,0 +1,27 @@
+flowchart TD
+    START([Mulai]) --> LOGIN(Login Aplikasi)
+    LOGIN --> DASHBOARD[Dashboard Verifikator]
+    
+    DASHBOARD --> MENU1(1. Verifikasi Laporan)
+    DASHBOARD --> MENU2(2. Rekap Laporan)
+    DASHBOARD --> LOGOUT(Logout)
+    
+    %% Alur Verifikasi Laporan
+    MENU1 --> LIST[Lihat Daftar Laporan Masuk]
+    LIST --> DETAIL[Tinjau Detail & File Dokumen]
+    DETAIL --> KEPUTUSAN{Keputusan Verifikasi?}
+    
+    KEPUTUSAN -- Disetujui --> APPROVE[Status Laporan: Disetujui]
+    APPROVE --> END([Selesai])
+    
+    KEPUTUSAN -- Revisi --> CATATAN[Tulis/Berikan Catatan Revisi]
+    CATATAN --> REVISI[Status Laporan: Revisi]
+    REVISI --> END
+    
+    %% Alur Rekap Laporan
+    MENU2 --> REKAP[Lihat Data Keseluruhan]
+    REKAP --> EXPORT[Export Data ke Word / Excel]
+    EXPORT --> END
+    
+    %% Logout
+    LOGOUT --> END

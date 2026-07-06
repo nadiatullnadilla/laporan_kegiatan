@@ -1,0 +1,31 @@
+flowchart TD
+    START([Mulai]) --> LOGIN(Login Aplikasi)
+    LOGIN --> DASHBOARD[Dashboard Admin]
+    
+    DASHBOARD --> MENU1(1. Input Laporan)
+    DASHBOARD --> MENU2(2. Kelola Laporan)
+    DASHBOARD --> MENU3(3. Rekap Laporan)
+    DASHBOARD --> LOGOUT(Logout)
+    
+    %% Alur Menu 1
+    MENU1 --> INPUT[Isi Form & Upload Dokumen]
+    INPUT --> STATUS_WAIT[Status: Menunggu Verifikasi]
+    STATUS_WAIT --> END([Selesai])
+    
+    %% Alur Menu 2
+    MENU2 --> LIST[Lihat Daftar & Detail Laporan]
+    LIST --> CEK_STATUS{Apakah Ada Revisi?}
+    CEK_STATUS -- Ya --> EDIT[Edit Laporan yang Direvisi]
+    EDIT --> STATUS_WAIT
+    CEK_STATUS -- Tidak (Disetujui) --> END
+    
+    LIST --> HAPUS[Hapus Laporan]
+    HAPUS --> END
+    
+    %% Alur Menu 3
+    MENU3 --> REKAP[Lihat Data Keseluruhan]
+    REKAP --> EXPORT[Export Data ke Word / Excel]
+    EXPORT --> END
+    
+    %% Logout
+    LOGOUT --> END
