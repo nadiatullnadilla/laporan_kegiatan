@@ -291,7 +291,7 @@ if (isset($_POST['login'])) {
                     <img src="assets\logo-gresik.png" alt="Logo Kecamatan Bungah" class="logo-left">
                 </div>
 
-                <div class="badge">Sistem Laporan Kecamatan</div>
+                <div class="badge">Sistem Laporan Kegiatan Kecamatan</div>
                 <h1>Login Admin & Verifikator</h1>
                 <p>
                     Admin bertugas menginput dan mengelola laporan, sedangkan verifikator

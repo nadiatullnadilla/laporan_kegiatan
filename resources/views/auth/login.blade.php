@@ -95,7 +95,7 @@
             <div class="logo-left-wrap">
                 <img src="{{ asset('assets/logo-gresik.png') }}" alt="Logo Kecamatan Bungah" class="logo-left">
             </div>
-            <div class="badge">Sistem Laporan Kecamatan</div>
+            <div class="badge">Sistem Laporan Kegiatan Kecamatan</div>
             <h1>Login Admin & Verifikator</h1>
             <p>Admin mengelola laporan, sedangkan verifikator meninjau dan menentukan status laporan kegiatan.</p>
             <div class="feature-item">Pengelolaan laporan harian yang lebih rapi dan terpusat.</div>
