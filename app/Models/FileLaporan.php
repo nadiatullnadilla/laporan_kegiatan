@@ -13,6 +13,7 @@ class FileLaporan extends Model
     protected $fillable = [
         'laporan_id',
         'nama_file',
+        'file_content',
     ];
 
     public function laporan()
