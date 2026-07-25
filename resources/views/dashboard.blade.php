@@ -41,7 +41,7 @@
                     <span>{{ $role === 'verifikator' ? '5 antrean terbaru' : '5 data terakhir' }}</span>
                 </div>
                 <div class="table-wrap recent-table">
-                    <table>
+                    <table class="report-table">
                         <tr>
                             <th>No</th>
                             <th>Nama Kegiatan</th>
@@ -51,15 +51,15 @@
                         </tr>
                         @forelse ($dashboardLaporan as $item)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>
+                                <td data-label="No">{{ $loop->iteration }}</td>
+                                <td data-label="Nama Kegiatan">
                                     <a class="table-link" href="{{ route('laporan.show', $item) }}">
                                         {{ $item->nama_kegiatan }}
                                     </a>
                                 </td>
-                                <td>{{ $item->tanggal }}</td>
-                                <td><span class="badge {{ $item->status }}">{{ $item->status }}</span></td>
-                                <td class="dashboard-action-cell">
+                                <td data-label="Tanggal">{{ $item->tanggal }}</td>
+                                <td data-label="Status"><span class="badge {{ $item->status }}">{{ $item->status }}</span></td>
+                                <td data-label="Aksi" class="dashboard-action-cell">
                                     <a class="btn btn-primary btn-compact dashboard-action-btn" href="{{ route('laporan.show', $item) }}">
                                         {{ $role === 'verifikator' ? 'Cek' : 'Lihat' }}
                                     </a>

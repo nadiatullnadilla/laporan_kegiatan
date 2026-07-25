@@ -407,8 +407,6 @@
             .table-actions form, .table-actions > .btn { width: auto; flex: 1; max-width: 140px; margin: 0; }
             .table-actions .btn { width: 100%; min-width: 0; }
             .table-wrap { width: 100%; max-width: 100%; border-radius: 12px; }
-            .recent-table table { min-width: 0; table-layout: fixed; }
-            .recent-table th, .recent-table td { overflow-wrap: anywhere; }
             .file-menu-row { grid-template-columns: 24px minmax(120px, 1fr); }
             .file-row-meta { grid-column: 2; text-align: left; white-space: normal; font-size: 11px; }
             .modal-overlay { padding: 10px; }
