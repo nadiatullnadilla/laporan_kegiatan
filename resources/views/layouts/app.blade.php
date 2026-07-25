@@ -416,7 +416,7 @@
             .footer { font-size: 12px; padding-bottom: 10px; }
             
             /* Responsive Table Cards */
-            .report-table, .report-table tbody, .report-table tr, .report-table td { display: block; width: 100%; }
+            .report-table, .report-table tbody, .report-table tr, .report-table td { display: block; width: 100%; min-width: 0 !important; }
             .report-table th { display: none; }
             .report-table tr { margin-bottom: 14px; border: 1px solid var(--line-strong); border-radius: 12px; overflow: hidden; background: var(--surface-solid); }
             .report-table td { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--line); text-align: right; border-right: none; padding: 12px; }
