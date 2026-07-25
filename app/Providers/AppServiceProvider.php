@@ -25,6 +25,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        if (env('APP_ENV') !== 'local') {
+            \Illuminate\Support\Facades\URL::forceScheme('https');
+        }
         View::composer('partials.sidebar', function ($view) {
             $view->with([
                 'total_menunggu_verifikasi' => Laporan::where('status', 'menunggu')->count(),
