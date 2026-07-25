@@ -31,6 +31,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('laporan_id')->constrained('laporan')->cascadeOnDelete();
             $table->string('nama_file');
+            $table->longText('file_content')->nullable();
         });
 
         Schema::create('riwayat_aktivitas', function (Blueprint $table) {

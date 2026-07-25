@@ -19,12 +19,12 @@
         <p><strong>Ekstensi:</strong> {{ $ext }}</p>
 
         @if (in_array($ext, ['jpg', 'png']))
-            <img src="{{ asset('uploads/' . $file) }}" alt="Preview Gambar" style="max-width:100%; border-radius:12px;">
+            <img src="{{ $fileModel->file_content }}" alt="Preview Gambar" style="max-width:100%; border-radius:12px;">
         @elseif ($ext === 'pdf')
-            <iframe src="{{ asset('uploads/' . $file) }}" style="width:100%; height:650px; border:0; border-radius:12px;"></iframe>
+            <iframe src="{{ $fileModel->file_content }}" style="width:100%; height:650px; border:0; border-radius:12px;"></iframe>
         @elseif (in_array($ext, ['mp4']))
             <video controls preload="metadata" style="width:100%; max-height:650px; border-radius:12px; background:#000;">
-                <source src="{{ asset('uploads/' . $file) }}">
+                <source src="{{ $fileModel->file_content }}">
                 Browser tidak mendukung pemutar video. Silakan download file untuk melihat isinya.
             </video>
         @else

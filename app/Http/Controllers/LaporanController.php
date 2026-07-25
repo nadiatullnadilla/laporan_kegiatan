@@ -93,7 +93,6 @@ class LaporanController extends Controller
         if ($request->has('delete_files')) {
             $filesToDelete = $laporan->files()->whereIn('id', $request->input('delete_files'))->get();
             foreach ($filesToDelete as $file) {
-                File::delete(public_path('uploads/' . $file->nama_file));
                 $file->delete();
             }
         }
@@ -105,10 +104,6 @@ class LaporanController extends Controller
 
     public function destroy(Laporan $laporan)
     {
-        foreach ($laporan->files as $file) {
-            File::delete(public_path('uploads/' . $file->nama_file));
-        }
-
         $laporan->files()->delete();
         $laporan->delete();
 
@@ -121,22 +116,21 @@ class LaporanController extends Controller
             return;
         }
 
-        $uploadPath = public_path('uploads');
-        if (!File::isDirectory($uploadPath)) {
-            File::makeDirectory($uploadPath, 0777, true);
-        }
-
         foreach ($request->file('dokumen') as $index => $file) {
             if (!$file || !$file->isValid()) {
                 continue;
             }
 
             $name = time() . '_' . $index . '_' . preg_replace('/[^A-Za-z0-9._-]/', '_', $file->getClientOriginalName());
-            $file->move($uploadPath, $name);
+            
+            $mime = $file->getMimeType();
+            $base64 = base64_encode(file_get_contents($file->getRealPath()));
+            $fileContent = 'data:' . $mime . ';base64,' . $base64;
 
             FileLaporan::create([
                 'laporan_id' => $laporan->id,
                 'nama_file' => $name,
+                'file_content' => $fileContent,
             ]);
 
             if (!$laporan->dokumen) {
@@ -163,11 +157,6 @@ class LaporanController extends Controller
     private function deleteUploadedFiles(Laporan $laporan)
     {
         $laporan->loadMissing('files');
-
-        foreach ($laporan->files as $file) {
-            File::delete(public_path('uploads/' . $file->nama_file));
-        }
-
         $laporan->files()->delete();
     }
 
