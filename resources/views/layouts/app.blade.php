@@ -424,7 +424,8 @@
             .report-table td::before { content: attr(data-label); position: absolute; left: 12px; top: 12px; width: 110px; text-align: left; font-weight: 800; color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
             .report-table td.action-cell, .report-table td.dashboard-action-cell { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; padding-left: 12px; position: static; }
             .report-table td.action-cell::before, .report-table td.dashboard-action-cell::before { position: static; width: auto; white-space: normal; }
-            .table-wrap { background: transparent; border: none; overflow: visible; }
+            .table-wrap { background: transparent; border: none; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            .table-wrap:has(.report-table) { overflow: visible; }
         }
 
         @media (max-width: 420px) {
