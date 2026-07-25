@@ -12,7 +12,7 @@
     ],
     "routes": [
         {
-            "src": "/(css|js|images|fonts|vendor)/(.*)",
+            "src": "/(css|js|images|fonts|vendor|assets|uploads)/(.*)",
             "dest": "/public/$1/$2"
         },
         {
