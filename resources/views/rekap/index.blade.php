@@ -76,15 +76,15 @@
                 </tr>
                 @forelse ($laporan as $item)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>
+                        <td data-label="No">{{ $loop->iteration }}</td>
+                        <td data-label="Nama Kegiatan">
                             <a class="table-link" href="{{ route('laporan.show', $item) }}">
                                 {{ $item->nama_kegiatan }}
                             </a>
                         </td>
-                        <td>{{ $item->tanggal }}</td>
-                        <td>{{ $item->tempat }}</td>
-                        <td>{{ $item->jam }}</td>
+                        <td data-label="Tanggal">{{ $item->tanggal }}</td>
+                        <td data-label="Tempat">{{ $item->tempat }}</td>
+                        <td data-label="Jam">{{ $item->jam }}</td>
                     </tr>
                 @empty
                     <tr><td colspan="5" class="empty">Tidak ada data laporan.</td></tr>
