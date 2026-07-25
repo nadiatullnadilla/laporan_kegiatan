@@ -403,8 +403,9 @@
             .toolbar { padding: 10px; }
             .actions { align-items: stretch; }
             .actions form { width: 100%; }
-            .table-actions { flex-wrap: wrap; }
-            .table-actions .btn { width: auto; min-width: 76px; }
+            .table-actions { flex-wrap: nowrap; justify-content: flex-end; width: 100%; gap: 6px; }
+            .table-actions form, .table-actions > .btn { width: auto; flex: 1; max-width: 140px; margin: 0; }
+            .table-actions .btn { width: 100%; min-width: 0; }
             .table-wrap { width: 100%; max-width: 100%; border-radius: 12px; }
             .recent-table table { min-width: 0; table-layout: fixed; }
             .recent-table th, .recent-table td { overflow-wrap: anywhere; }
@@ -415,6 +416,16 @@
             .activity-scroll { max-height: 62vh; }
             th, td { padding: 11px 12px; font-size: 13px; }
             .footer { font-size: 12px; padding-bottom: 10px; }
+            
+            /* Responsive Table Cards */
+            .report-table, .report-table tbody, .report-table tr, .report-table td { display: block; width: 100%; }
+            .report-table th { display: none; }
+            .report-table tr { margin-bottom: 14px; border: 1px solid var(--line-strong); border-radius: 12px; overflow: hidden; background: var(--surface-solid); }
+            .report-table td { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--line); text-align: right; border-right: none; padding: 12px; }
+            .report-table td:last-child { border-bottom: none; flex-direction: column; align-items: flex-end; gap: 8px; }
+            .report-table td::before { content: attr(data-label); font-weight: 800; color: var(--muted); text-align: left; margin-right: 14px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+            .report-table td:first-child, .report-table td:nth-child(3), .report-table td:nth-child(5), .report-table td:nth-child(7), .report-table td:last-child { width: 100%; text-align: right; }
+            .table-wrap { background: transparent; border: none; overflow: visible; }
         }
 
         @media (max-width: 420px) {

@@ -39,22 +39,22 @@
         </div>
 
         <div class="table-wrap activity-scroll">
-            <table>
+            <table class="report-table">
                 <tr>
                     <th>No</th><th>Nama Kegiatan</th><th>Tanggal</th><th>Tempat</th><th>Jam</th><th>Dokumen</th><th>Status</th><th>Catatan</th><th class="no-print">Aksi</th>
                 </tr>
                 @forelse ($laporan as $item)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>
+                        <td data-label="No">{{ $loop->iteration }}</td>
+                        <td data-label="Nama Kegiatan">
                             <a class="table-link" href="{{ route('laporan.show', $item) }}">
                                 {{ $item->nama_kegiatan }}
                             </a>
                         </td>
-                        <td>{{ $item->tanggal }}</td>
-                        <td>{{ $item->tempat }}</td>
-                        <td>{{ $item->jam }}</td>
-                        <td>
+                        <td data-label="Tanggal">{{ $item->tanggal }}</td>
+                        <td data-label="Tempat">{{ $item->tempat }}</td>
+                        <td data-label="Jam">{{ $item->jam }}</td>
+                        <td data-label="Dokumen">
                             @if ($item->files->count())
                                 <button type="button" class="file-badge file-modal-trigger" data-modal-target="files-modal-{{ $item->id }}">
                                     Lihat {{ $item->files->count() > 1 ? $item->files->count() . ' File' : 'File' }}
@@ -87,9 +87,9 @@
                                 -
                             @endif
                         </td>
-                        <td><span class="badge {{ $item->status }}">{{ $item->status }}</span></td>
-                        <td>{{ $item->catatan_verifikator ?: '-' }}</td>
-                        <td class="no-print action-cell">
+                        <td data-label="Status"><span class="badge {{ $item->status }}">{{ $item->status }}</span></td>
+                        <td data-label="Catatan">{{ $item->catatan_verifikator ?: '-' }}</td>
+                        <td data-label="Aksi" class="no-print action-cell">
                             <div class="actions table-actions verification-actions">
                                 @if ($item->status !== 'disetujui')
                                     <form method="POST" action="{{ route('verifikasi.update', [$item, 'setujui']) }}" onsubmit="return confirm('Setujui laporan ini?')">
