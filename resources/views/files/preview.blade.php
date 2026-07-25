@@ -18,7 +18,7 @@
         <p><strong>Nama File:</strong> {{ $file }}</p>
         <p><strong>Ekstensi:</strong> {{ $ext }}</p>
 
-        @if (in_array($ext, ['jpg', 'png']))
+        @if (in_array($ext, ['jpg', 'jpeg', 'png', 'gif', 'webp']))
             <img src="{{ $fileModel->file_content }}" alt="Preview Gambar" style="max-width:100%; border-radius:12px;">
         @elseif ($ext === 'pdf')
             <iframe src="{{ $fileModel->file_content }}" style="width:100%; height:650px; border:0; border-radius:12px;"></iframe>
