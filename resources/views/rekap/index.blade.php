@@ -70,21 +70,21 @@
             @endif
         </h3>
         <div class="table-wrap">
-            <table class="report-table">
+            <table>
                 <tr>
                     <th>No</th><th>Nama Kegiatan</th><th>Tanggal</th><th>Tempat</th><th>Jam</th>
                 </tr>
                 @forelse ($laporan as $item)
                     <tr>
-                        <td data-label="No">{{ $loop->iteration }}</td>
-                        <td data-label="Nama Kegiatan">
+                        <td>{{ $loop->iteration }}</td>
+                        <td>
                             <a class="table-link" href="{{ route('laporan.show', $item) }}">
                                 {{ $item->nama_kegiatan }}
                             </a>
                         </td>
-                        <td data-label="Tanggal">{{ $item->tanggal }}</td>
-                        <td data-label="Tempat">{{ $item->tempat }}</td>
-                        <td data-label="Jam">{{ $item->jam }}</td>
+                        <td>{{ $item->tanggal }}</td>
+                        <td>{{ $item->tempat }}</td>
+                        <td>{{ $item->jam }}</td>
                     </tr>
                 @empty
                     <tr><td colspan="5" class="empty">Tidak ada data laporan.</td></tr>
