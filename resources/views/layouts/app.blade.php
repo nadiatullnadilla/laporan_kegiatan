@@ -420,9 +420,9 @@
             .report-table th { display: none; }
             .report-table tr { margin-bottom: 14px; border: 1px solid var(--line-strong); border-radius: 12px; overflow: hidden; background: var(--surface-solid); }
             .report-table td { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--line); text-align: right; border-right: none; padding: 12px; }
-            .report-table td:last-child { border-bottom: none; flex-direction: column; align-items: flex-end; gap: 8px; }
+            .report-table td:last-child { border-bottom: none; }
+            .report-table td.action-cell, .report-table td.dashboard-action-cell { flex-direction: column; align-items: flex-end; gap: 8px; }
             .report-table td::before { content: attr(data-label); font-weight: 800; color: var(--muted); text-align: left; margin-right: 14px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
-            .report-table td:first-child, .report-table td:nth-child(3), .report-table td:nth-child(5), .report-table td:nth-child(7), .report-table td:last-child { width: 100%; text-align: right; }
             .table-wrap { background: transparent; border: none; overflow: visible; }
         }
 
