@@ -24,7 +24,10 @@
     </div>
     <div class="full">
         <label>Upload Dokumen / Gambar / Video</label>
-        <input type="file" name="dokumen[]" multiple accept=".png,.jpg,.jpeg,.pdf,.mp4">
+        <input type="file" id="file-upload-input" name="dokumen[]" multiple accept=".png,.jpg,.jpeg,.pdf,.mp4">
+        <div id="upload-status" style="margin-top: 8px; font-size: 13px; color: var(--primary); font-weight: bold; display: none;">
+            Sedang mengompres gambar dari HP Anda... <span id="upload-progress"></span>
+        </div>
         @if ($laporan && $laporan->files->count())
             <div class="current-files-grid" id="currentFilesContainer" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 14px; margin-top: 14px;">
                 @foreach ($laporan->files as $file)
@@ -72,3 +75,74 @@
         </small>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.1/dist/browser-image-compression.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const fileInput = document.getElementById('file-upload-input');
+    const statusDiv = document.getElementById('upload-status');
+    const progressSpan = document.getElementById('upload-progress');
+    const submitBtns = document.querySelectorAll('button[type="submit"]');
+
+    if (!fileInput) return;
+
+    fileInput.addEventListener('change', async function (e) {
+        const files = Array.from(e.target.files);
+        if (files.length === 0) return;
+
+        const needsCompression = files.some(f => f.type.startsWith('image/') && f.size > 1024 * 1024);
+        
+        const tooLargeFiles = files.filter(f => f.size > 4.5 * 1024 * 1024 && !f.type.startsWith('image/'));
+        if (tooLargeFiles.length > 0) {
+            alert('Perhatian: Server (Vercel) memiliki batas upload maksimal 4.5 MB per proses. File dokumen atau video Anda sangat besar dan berpotensi gagal di-upload (Error 413).');
+        }
+
+        if (!needsCompression) return;
+
+        statusDiv.style.display = 'block';
+        submitBtns.forEach(btn => {
+            btn.disabled = true;
+            if (!btn.dataset.originalText) btn.dataset.originalText = btn.innerText;
+            btn.innerText = 'Mengompres Gambar...';
+        });
+
+        const dataTransfer = new DataTransfer();
+        let processed = 0;
+
+        for (let i = 0; i < files.length; i++) {
+            let file = files[i];
+            
+            if (file.type.startsWith('image/') && file.size > 1024 * 1024) {
+                try {
+                    progressSpan.innerText = `(${processed + 1}/${files.length})`;
+                    const options = {
+                        maxSizeMB: 1, 
+                        maxWidthOrHeight: 1920,
+                        useWebWorker: true
+                    };
+                    const compressedFile = await imageCompression(file, options);
+                    let newFile = new File([compressedFile], file.name, {
+                        type: compressedFile.type,
+                        lastModified: Date.now()
+                    });
+                    dataTransfer.items.add(newFile);
+                } catch (error) {
+                    console.error('Error compressing file', error);
+                    dataTransfer.items.add(file);
+                }
+            } else {
+                dataTransfer.items.add(file);
+            }
+            processed++;
+        }
+        
+        fileInput.files = dataTransfer.files;
+        
+        statusDiv.style.display = 'none';
+        submitBtns.forEach(btn => {
+            btn.disabled = false;
+            btn.innerText = btn.dataset.originalText;
+        });
+    });
+});
+</script>
