@@ -52,7 +52,7 @@ class LaporanController extends Controller
             'tanggal' => ['required', 'date'],
             'tempat' => ['required', 'string', 'max:255'],
             'jam' => ['required'],
-            'dokumen.*' => ['nullable', 'file', 'mimes:pdf,png,jpg,mp4', 'max:512000'],
+            'dokumen.*' => ['nullable', 'file', 'mimes:pdf,png,jpg,mp4', 'max:4096'],
         ]);
 
         $laporan = Laporan::create([
@@ -82,7 +82,7 @@ class LaporanController extends Controller
             'tanggal' => ['required', 'date'],
             'tempat' => ['required', 'string', 'max:255'],
             'jam' => ['required'],
-            'dokumen.*' => ['nullable', 'file', 'mimes:pdf,png,jpg,mp4', 'max:512000'],
+            'dokumen.*' => ['nullable', 'file', 'mimes:pdf,png,jpg,mp4', 'max:4096'],
             'delete_files' => ['nullable', 'array'],
             'delete_files.*' => ['integer'],
         ]);

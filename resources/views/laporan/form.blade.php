@@ -68,7 +68,7 @@
             </script>
         @endif
         <small class="field-help">
-            Format file: PNG, JPG, PDF, dan MP4. Ukuran tiap file maksimal 500 MB dan bisa upload beberapa file sekaligus.
+            Format file: PNG, JPG, PDF, dan MP4. Total ukuran unggahan maksimal 4 MB (batas server). Gambar dari HP akan dikompres otomatis.
             @if ($laporan)
                 <br><em>File baru yang diupload akan ditambahkan ke daftar file Anda. Klik tanda silang (x) pada file lama jika ingin menghapusnya.</em>
             @endif
