@@ -416,10 +416,10 @@
             .footer { font-size: 12px; padding-bottom: 10px; }
             
             /* Responsive Table Cards */
-            .report-table, .report-table tbody, .report-table tr, .report-table td { display: block; width: 100%; min-width: 0 !important; }
+            .report-table, .report-table tbody, .report-table tr, .report-table td { display: block; width: 100% !important; min-width: 0 !important; }
             .report-table th { display: none; }
             .report-table tr { margin-bottom: 14px; border: 1px solid var(--line-strong); border-radius: 12px; overflow: hidden; background: var(--surface-solid); }
-            .report-table td { display: block; position: relative; padding: 12px 12px 12px 130px; border-bottom: 1px solid var(--line); text-align: right; min-height: 44px; word-wrap: break-word; }
+            .report-table td { display: block; position: relative; padding: 12px 12px 12px 130px; border-bottom: 1px solid var(--line); text-align: right !important; min-height: 44px; word-wrap: break-word; }
             .report-table td:last-child { border-bottom: none; }
             .report-table td::before { content: attr(data-label); position: absolute; left: 12px; top: 12px; width: 110px; text-align: left; font-weight: 800; color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
             .report-table td.action-cell, .report-table td.dashboard-action-cell { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; padding-left: 12px; position: static; }
